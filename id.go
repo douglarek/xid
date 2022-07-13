@@ -115,6 +115,9 @@ func readMachineID() []byte {
 	hid, err := readPlatformMachineID()
 	if err != nil || len(hid) == 0 {
 		hid, err = os.Hostname()
+	} else {
+		i, _ := os.Hostname()
+		hid += i
 	}
 	if err == nil && len(hid) != 0 {
 		hw := md5.New()
